@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Communication Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #14b8a6;
+            --danger: #ef4444;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Modern Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Sticky Header / Nav */
+        header {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+        }
+
+        nav .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        nav ul li a.special-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        nav ul li a.special-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 120px 0 60px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        h2.section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* About Me / Student Profile */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 1/1;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .profile-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .student-id {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Inspiration Sub-block */
+        .inspiration-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(20, 184, 166, 0.05));
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 2rem;
+        }
+
+        .inspiration-box h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .inspiration-box p {
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        /* Telegraph Project Section */
+        .project-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .project-meta p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+
+        /* Course Overview Dashboard */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .overview-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+        }
+
+        .card-header-icon {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+
+        .overview-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .overview-card ul {
+            list-style: none;
+        }
+
+        .overview-card ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .overview-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.5rem;
+            line-height: 1;
+            top: -2px;
+        }
+
+        .overview-card ul li strong {
+            color: var(--text-main);
+        }
+
+        /* Videos and Resources Hub */
+        .media-hub {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .video-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .video-wrapper h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Call To Action Banner for External Assignment */
+        .satellite-cta {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 4rem auto 0 auto;
+        }
+
+        .satellite-cta h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .satellite-cta p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+
+        .cta-btn:hover {
+            background: #0d9488;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b0f19;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        footer .links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        footer .links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        footer .links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .profile-grid, .media-hub {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .profile-image-wrapper {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            nav ul {
+                gap: 0.75rem;
+            }
+            nav ul li a {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fa-solid fa-network-wired"></i> DataComWeb
+            </div>
+            <ul>
+                <li><a href="#about" class="nav-link active">About Me</a></li>
+                <li><a href="#telegraph" class="nav-link">Telegraph Project</a></li>
+                <li><a href="#course-overview" class="nav-link">Course Overview</a></li>
+                <li><a href="#resources" class="nav-link">Videos & Resources</a></li>
+                <li><a href="https://ev.turnitin.com/app/carta/en_us/?o=2954547285&u=1198674968&ro=103&student_user=1&lang=en_us" target="_blank" rel="noopener noreferrer" class="special-btn">Turnitin-Satellite</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="profile-grid">
+                <div class="profile-image-wrapper">
+                    <img src="my-photo.jpeg" alt="Acceptable Ernest Donkoh">
+                </div>
+                <div class="profile-info">
+                    <h3>Acceptable Ernest Donkoh</h3>
+                    <div class="student-id">Student ID: PUIS/24210014</div>
+                    <p class="bio-text">
+                        I am a focused student tracking in computer network technologies, engineering interfaces, and communication systems. This portal serves as a unified reference library containing our major practical write-ups, historical communications reports, and high-level conceptual course logs.
+                    </p>
+                    
+                    <div class="inspiration-box">
+                        <h4><i class="fa-solid fa-fire-flame-simple"></i> What Inspires Me</h4>
+                        <p>
+                            I am inspired by how simple hardware architectures (like physical telegraph circuits) paved the way for complex global networks. Building systems that make information universally accessible and efficient keeps me continuously exploring.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="telegraph">
+            <h2 class="section-title">Telegraph Project</h2>
+            <div class="project-layout">
+                <div class="project-meta">
+                    <p>
+                        The Telegraph Project showcases how classical data transmission modes were designed using discrete analog currents to express digital codes. By switching copper line circuits closed and open, operators could carry data instantly across continents.
+                    </p>
+                    <p>
+                        Our implementation breaks down historical Morse-key wiring mechanisms, signal attenuation, and long-range relay structures used to ensure signal clarity over lengthy distances.
+                    </p>
+                    <div class="video-wrapper">
+                        <h3><i class="fa-brands fa-youtube" style="color: var(--danger);"></i> Demonstration Video</h3>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/bC9LOAoGUI4" title="Telegraph Project Video Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="course-overview">
+            <h2 class="section-title">Course Overview</h2>
+            <div class="overview-grid">
+                
+                <div class="overview-card">
+                    <span class="card-header-icon">📡</span>
+                    <h3>1. Intro to Data Comm</h3>
+                    <ul>
+                        <li><strong>Meaning:</strong> The structural exchange of digital data between a sender and receiver using an arbitrary physical routing medium.</li>
+                        <li><strong>Components:</strong> Message, Sender, Receiver, Transmission Medium, and Protocols.</li>
+                        <li><strong>Importance:</strong> Builds the fundamental backbone for the web, telemetry, enterprise communication, and structural IoT networks.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">🔌</span>
+                    <h3>2. Transmission Modes</h3>
+                    <ul>
+                        <li><strong>Simplex:</strong> Uni-directional path lines restricting transmission to one direction (e.g., Traditional broadcast radio, keyboard signals).</li>
+                        <li><strong>Half-Duplex:</strong> Dual-direction paths capable of transferring both ways, but not concurrently (e.g., Walkie-talkies).</li>
+                        <li><strong>Full-Duplex:</strong> Simultaneous bidirectional link pipelines optimizing data rates (e.g., Cellular networks, VoIP streams).</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">🌐</span>
+                    <h3>3. Network Types</h3>
+                    <ul>
+                        <li><strong>LAN:</strong> Local Area Network routing confined to close geographical scales (e.g., Offices, Homes).</li>
+                        <li><strong>MAN:</strong> Metropolitan Area Network bridging medium distances to link multiple city sectors.</li>
+                        <li><strong>WAN:</strong> Wide Area Networks stretching globally to interlink multiple LAN/MAN groups (e.g., The Internet).</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">📶</span>
+                    <h3>4. Transmission Media</h3>
+                    <ul>
+                        <li><strong>Guided Media:</strong> Grounded physical wiring infrastructures including Fiber-optic fibers, coaxial lines, and copper twisted pairs.</li>
+                        <li><strong>Unguided Media:</strong> Wireless signal projections routing data using radio waves, cellular microwave links, or short-range infrared beams.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">🧠</span>
+                    <h3>5. Network Devices</h3>
+                    <ul>
+                        <li><strong>Routers & Switches:</strong> Smart packet-routing equipment that routes frames safely through local nodes or global domains.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">📦</span>
+                    <h3>6. Data Encoding & Signals</h3>
+                    <ul>
+                        <li><strong>Analog vs Digital:</strong> Continuously fluid waves vs discrete binary step-voltages representing numeric bits.</li>
+                        <li><strong>Modulation:</strong> Transforming simple data streams into specialized signal properties using Amplitude, Frequency, or Phase techniques.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon">🔐</span>
+                    <h3>7. Network Protocols</h3>
+                    <ul>
+                        <li><strong>TCP/IP:</strong> The foundational stack securing ordered connection pathways and end-to-end transmissions.</li>
+                        <li><strong>HTTP / HTTPS:</strong> Universal application architectures managing document transfers across web nodes securely.</li>
+                        <li><strong>FTP, SMTP:</strong> Protocols dedicated to routing files securely and organizing outbound mail transfers.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2 class="section-title">Videos & Resources</h2>
+            <div class="media-hub">
+                <div class="video-wrapper">
+                    <h3><i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i> Data Communication Basics</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/QY6K1G_UypM" title="Introduction to Data Communication & Networks - Lecture 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-wrapper">
+                    <h3><i class="fa-solid fa-history" style="color: var(--accent);"></i> Telegraph & Morse Code Overview</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/bC9LOAoGUI4" title="Telegraph Walkthrough Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="satellite-cta">
+                <h3>Satellite Project Portal</h3>
+                <p>
+                    Review the complete Satellite Project, validated and submitted under original compliance guidelines through the official Turnitin network.
+                </p>
+                <a href="https://ev.turnitin.com/app/carta/en_us/?o=2954547285&u=1198674968&ro=103&student_user=1&lang=en_us" target="_blank" rel="noopener noreferrer" class="cta-btn">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Satellite Project on Turnitin
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Acceptable Ernest Donkoh | Student ID: PUIS/24210014</p>
+            <div class="links">
+                <a href="#about">About Me</a>
+                <a href="#telegraph">Telegraph Project</a>
+                <a href="#course-overview">Course Overview</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
