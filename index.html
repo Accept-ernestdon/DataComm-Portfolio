@@ -438,6 +438,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -445,12 +446,27 @@
             <div class="logo">
                 <i class="fa-solid fa-network-wired"></i> DataComWeb
             </div>
+
             <ul>
                 <li><a href="#about" class="nav-link active">About Me</a></li>
                 <li><a href="#telegraph" class="nav-link">Telegraph Project</a></li>
                 <li><a href="#course-overview" class="nav-link">Course Overview</a></li>
                 <li><a href="#resources" class="nav-link">Videos & Resources</a></li>
-                <li><a href="https://ev.turnitin.com/app/carta/en_us/?o=2954547285&u=1198674968&ro=103&student_user=1&lang=en_us" target="_blank" rel="noopener noreferrer" class="special-btn">Turnitin-Satellite</a></li>
+
+                <!-- ✅ ADDED TERM PAPER TAB (ONLY ADDITION) -->
+                <li>
+                    <a href="docs/satellite-term-paper.docx" target="_blank" rel="noopener noreferrer" class="special-btn">
+                        Satellite Term Paper
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://ev.turnitin.com/app/carta/en_us/?o=2954547285&u=1198674968&ro=103&student_user=1&lang=en_us"
+                       target="_blank" rel="noopener noreferrer"
+                       class="special-btn">
+                       Turnitin-Satellite
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -564,79 +580,4 @@
                     <span class="card-header-icon">🔐</span>
                     <h3>7. Network Protocols</h3>
                     <ul>
-                        <li><strong>TCP/IP:</strong> The foundational stack securing ordered connection pathways and end-to-end transmissions.</li>
-                        <li><strong>HTTP / HTTPS:</strong> Universal application architectures managing document transfers across web nodes securely.</li>
-                        <li><strong>FTP, SMTP:</strong> Protocols dedicated to routing files securely and organizing outbound mail transfers.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="resources">
-            <h2 class="section-title">Videos & Resources</h2>
-            <div class="media-hub">
-                <div class="video-wrapper">
-                    <h3><i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i> Data Communication Basics</h3>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/QY6K1G_UypM" title="Introduction to Data Communication & Networks - Lecture 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <div class="video-wrapper">
-                    <h3><i class="fa-solid fa-history" style="color: var(--accent);"></i> Telegraph & Morse Code Overview</h3>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/bC9LOAoGUI4" title="Telegraph Walkthrough Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="satellite-cta">
-                <h3>Satellite Project Portal</h3>
-                <p>
-                    Review the complete Satellite Project, validated and submitted under original compliance guidelines through the official Turnitin network.
-                </p>
-                <a href="https://ev.turnitin.com/app/carta/en_us/?o=2954547285&u=1198674968&ro=103&student_user=1&lang=en_us" target="_blank" rel="noopener noreferrer" class="cta-btn">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Satellite Project on Turnitin
-                </a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Acceptable Ernest Donkoh | Student ID: PUIS/24210014</p>
-            <div class="links">
-                <a href="#about">About Me</a>
-                <a href="#telegraph">Telegraph Project</a>
-                <a href="#course-overview">Course Overview</a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <li><stron
