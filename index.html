@@ -290,13 +290,14 @@
         }
 
         .overview-card ul li::before {
-            content: "•";
+            content: "";
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-size: 1.5rem;
-            line-height: 1;
-            top: -2px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 0.55rem;
         }
 
         .overview-card ul li strong {
@@ -418,6 +419,36 @@
             color: var(--primary);
         }
 
+        .card-header-icon {
+            color: var(--accent);
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1rem;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 992px) {
             .profile-grid, .media-hub {
@@ -434,6 +465,31 @@
             nav ul li a {
                 font-size: 0.85rem;
                 padding: 0.4rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 720px) {
+            nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            section {
+                padding-top: 150px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -453,9 +509,8 @@
                 <li><a href="#course-overview" class="nav-link">Course Overview</a></li>
                 <li><a href="#resources" class="nav-link">Videos & Resources</a></li>
 
-                <!-- ✅ ADDED TERM PAPER TAB (ONLY ADDITION) -->
                 <li>
-                    <a href="docs/satellite-term-paper.docx" target="_blank" rel="noopener noreferrer" class="special-btn">
+                    <a href="paper.html" class="special-btn">
                         Satellite Term Paper
                     </a>
                 </li>
@@ -577,7 +632,75 @@
                 </div>
 
                 <div class="overview-card">
-                    <span class="card-header-icon">🔐</span>
+                    <span class="card-header-icon"><i class="fa-solid fa-shield-halved"></i></span>
                     <h3>7. Network Protocols</h3>
                     <ul>
-                        <li><stron
+                        <li><strong>Rules:</strong> Protocols define how devices identify each other, format data, and recover from errors.</li>
+                        <li><strong>Examples:</strong> TCP/IP, HTTP, HTTPS, FTP, SMTP, and DNS support common internet communication.</li>
+                    </ul>
+                </div>
+
+                <div class="overview-card">
+                    <span class="card-header-icon"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+                    <h3>8. Modern Networking</h3>
+                    <ul>
+                        <li><strong>Cloud Systems:</strong> Remote servers make websites, databases, and applications available worldwide.</li>
+                        <li><strong>Security:</strong> Encryption and access control protect data while it moves across networks.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2 class="section-title">Videos & Resources</h2>
+            <div class="media-hub">
+                <div class="video-wrapper">
+                    <h3><i class="fa-brands fa-youtube" style="color: var(--danger);"></i> Data Communication Basics</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/qiQR5rTSshw" title="Data Communication Basics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="video-wrapper">
+                    <h3><i class="fa-brands fa-youtube" style="color: var(--danger);"></i> Computer Networks Overview</h3>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/3QhU9jd03a0" title="Computer Networks Overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="satellite-cta">
+                <h3>Satellite Communication Term Paper</h3>
+                <p>Open the submitted term paper in the browser as a PDF, or download the document file for offline reading.</p>
+                <a class="cta-btn" href="paper.html">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    View Term Paper
+                </a>
+            </div>
+
+            <div class="resource-list">
+                <a class="resource-link" href="docs/satellite-term-paper.pdf" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Open PDF
+                </a>
+                <a class="resource-link" href="docs/satellite-term-paper.docx" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-file-word"></i>
+                    Download DOCX
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 DataComWeb. Data Communication Portfolio by Acceptable Ernest Donkoh.</p>
+            <div class="links">
+                <a href="#about">About</a>
+                <a href="#telegraph">Telegraph Project</a>
+                <a href="#course-overview">Course Overview</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
